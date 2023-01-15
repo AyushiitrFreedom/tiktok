@@ -1,15 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:tiktok/controller/auth_controller.dart';
 import 'package:tiktok/view/widgets/text_input.dart';
 
-class SignUp extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  SignUp({super.key});
+  SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
         body: SingleChildScrollView(
           child: Column(children: [
               Container(
@@ -26,11 +30,16 @@ class SignUp extends StatelessWidget {
               SizedBox(
                 height: 130,
               ),
-              CircleAvatar(
-                radius: 80,
-                backgroundImage:
-                    AssetImage("images/profile1.png"),
-                backgroundColor: Color.fromARGB(255, 239, 237, 237),
+              InkWell(
+                child: CircleAvatar(
+                  radius: 80,
+                  backgroundImage:
+                      AssetImage("images/profile1.png"),
+                  backgroundColor: Color.fromARGB(255, 239, 237, 237),
+                ),
+                onTap: () {
+                  AuthController.instance.pickImage();
+                },
               ),
              
             ],
@@ -71,20 +80,26 @@ class SignUp extends StatelessWidget {
               const SizedBox(
           height: 40.0,
               ),
-              Container(
-          height: 70,
-          width: 200,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            image: DecorationImage(
-                image: AssetImage("images/signup.png"), fit: BoxFit.cover),
-          ),
-          child: Center(
-            child: Text(
-              "Sign Up",
-              style: TextStyle(fontSize: 35, color: Colors.white),
-            ),
-          ),
+              GestureDetector(
+                child: Container(
+                        height: 70,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          image: DecorationImage(
+                  image: AssetImage("images/signup.png"), fit: BoxFit.cover),
+                        ),
+                        child: Center(
+                          child: Text(
+                "Sign Up",
+                style: TextStyle(fontSize: 35, color: Colors.white),
+                          ),
+                        ),
+                ),
+                onTap:() {
+                  
+                  AuthController.instance.SignUp(_usernameController.text,_emailController.text,_passwordController.text , AuthController().img);
+                },
               ),
             ]),
         ));

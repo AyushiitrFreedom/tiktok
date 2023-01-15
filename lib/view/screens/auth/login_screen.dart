@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/controller/auth_controller.dart';
 import 'package:tiktok/view/widgets/text_input.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -54,21 +55,26 @@ class LoginScreen extends StatelessWidget {
       const SizedBox(
         height: 40.0,
       ),
-      Container(
-        height: 70,
-        width: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          image: DecorationImage(
-              image: AssetImage("images/signup.png"),
-              fit: BoxFit.cover),
-        ),
-        child: Center(
-          child: Text(
-            "log in",
-            style: TextStyle(fontSize: 35, color: Colors.white),
+      InkWell(
+        child: Container(
+          height: 70,
+          width: 200,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            image: DecorationImage(
+                image: AssetImage("images/signup.png"),
+                fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Text(
+              "log in",
+              style: TextStyle(fontSize: 35, color: Colors.white),
+            ),
           ),
         ),
+        onTap: () {
+          AuthController.instance.Login(_emailController.text, _passwordController.text);
+        },
       ),
     ]));
   }
