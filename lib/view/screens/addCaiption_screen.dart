@@ -17,7 +17,7 @@ class addCaiptionScreen extends StatefulWidget {
 
 class _addCaiptionScreenState extends State<addCaiptionScreen> {
   late VideoPlayerController videoPlayerController;
-  videoUploadController videoUploadcontroller =    Get.put(videoUploadController.instance);
+  videoUploadController videoUploadcontroller =    Get.put(videoUploadController());
   @override
   void initState() {
     // TODO: implement initState
